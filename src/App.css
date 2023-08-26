@@ -3,3 +3,9 @@
   margin: 0;
   padding: 0;
 }
+
+/* AllProducts.jsx */
+
+.productImages {
+  width: 250px;
+}
