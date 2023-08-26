@@ -4,8 +4,39 @@
   padding: 0;
 }
 
+/* Homepage.jsx  */
+
+.home {
+}
+
+.siteBanner {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+}
+
 /* AllProducts.jsx */
 
 .productImages {
   width: 250px;
+}
+
+/* Navigation.jsx  */
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  background-color: floralwhite;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.navigation li {
+  list-style-type: none;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
