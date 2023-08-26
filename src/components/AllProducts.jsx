@@ -21,7 +21,18 @@ export default function AllProducts() {
       <h1>All Products</h1>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <main key={product.id} className="allProducts">
+            <img
+              src={product.image}
+              className="productImages"
+              alt="Product for sale"
+            />
+            <li>{product.title}</li>
+            <li>
+              {product.rating.rate} {product.rating.count} reviews
+            </li>
+            <li>${product.price}</li>
+          </main>
         ))}
       </ul>
     </div>
