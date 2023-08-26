@@ -29,7 +29,7 @@ export default function AllProducts() {
             />
             <li>{product.title}</li>
             <li>
-              {product.rating.rate} {product.rating.count} reviews
+              {product.rating.rate} stars {product.rating.count} reviews
             </li>
             <li>${product.price}</li>
           </main>
