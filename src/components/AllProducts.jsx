@@ -17,9 +17,9 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <div>
+    <div className="allProducts">
       <h1>All Products</h1>
-      <ul>
+      <ul className="products">
         {products.map((product) => (
           <main key={product.id} className="allProducts">
             <img
