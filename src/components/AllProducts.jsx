@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -22,12 +23,15 @@ export default function AllProducts() {
       <ul className="products">
         {products.map((product) => (
           <main key={product.id} className="allProducts">
-            <img
-              src={product.image}
-              className="productImages"
-              alt="Product for sale"
-            />
-            <li>{product.title}</li>
+            <Link to={`/products/${product.id}`}>
+              <img
+                src={product.image}
+                className="productImages"
+                alt="Product for sale"
+              />
+
+              <li>{product.title}</li>
+            </Link>
             <li>
               {product.rating.rate} stars {product.rating.count} reviews
             </li>
