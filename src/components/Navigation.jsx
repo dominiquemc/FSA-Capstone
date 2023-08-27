@@ -4,7 +4,7 @@ export default function Navigation() {
   return (
     <ul className="navigation">
       <li>
-        <Link to="/products">Shop All Products</Link>
+        <Link to="/">Shop All Products</Link>
       </li>
       <li>
         <Link to="/">Clothing</Link>
