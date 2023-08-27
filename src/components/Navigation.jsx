@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Icon from "@mui/material/Icon";
 
 export default function Navigation() {
   return (
@@ -16,7 +17,10 @@ export default function Navigation() {
         <Link to="/">Electronics</Link>
       </li>
       <li>
-        <Link to="/">Books</Link>
+        <div className="signInContainer">
+          <Icon>person</Icon>
+          <Link to="/">Sign In</Link>
+        </div>
       </li>
     </ul>
   );
