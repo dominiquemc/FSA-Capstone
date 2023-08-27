@@ -1,4 +1,5 @@
 import Navigation from "./Navigation";
+import AllProducts from "./AllProducts";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
           alt="Shop Direct Banner"
         />
       </div>
+      <AllProducts />
     </>
   );
 }
