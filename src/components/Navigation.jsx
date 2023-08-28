@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "@mui/material/Icon";
 
-export default function Navigation() {
+export default function Navigation({ setShowLogin }) {
   return (
     <ul className="navigation">
       <li>
@@ -19,7 +19,9 @@ export default function Navigation() {
       <li>
         <div className="signInContainer">
           <Icon>person</Icon>
-          <Link to="/">Sign In</Link>
+          <Link to="/" onClick={() => setShowLogin(true)}>
+            Sign In
+          </Link>
         </div>
       </li>
     </ul>
