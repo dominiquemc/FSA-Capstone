@@ -25,6 +25,11 @@ export default function SingleProduct() {
   return (
     <>
       <Navigation />
+      <img
+        src="../src/assets/banner.png"
+        className="siteBanner"
+        alt="Shop Direct Banner"
+      />
       <h1>Product Details</h1>
       <div className="singleProducts">
         <img src={singleProduct.image} alt={singleProduct.title} />
