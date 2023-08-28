@@ -86,9 +86,8 @@
 }
 
 .navigation li:hover {
-  border-bottom: 1px solid #ff914d;
-  transform: scale(1.1);
-  transition: border-width 0.6s linear;
+  border-bottom: 3px solid #ff914d;
+  transition: border-width 0.2s linear;
 }
 
 .navigation a {
