@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SortProducts from "./SortProducts";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -18,8 +19,9 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <div className="allProducts">
-      <h1>All Products</h1>
+    <div className="allProducts-list">
+      {/* <h1>All Products</h1> */}
+      <SortProducts />
       <ul className="products">
         {products.map((product) => (
           <main key={product.id} className="allProducts">
