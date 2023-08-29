@@ -20,8 +20,9 @@ export default function AllProducts() {
 
   return (
     <div className="allProducts-list">
-      {/* <h1>All Products</h1> */}
-      <SortProducts />
+      <>
+        <SortProducts setSortedProducts={setProducts} />
+      </>
       <ul className="products">
         {products.map((product) => (
           <main key={product.id} className="allProducts">
