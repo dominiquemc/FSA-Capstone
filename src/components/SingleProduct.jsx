@@ -30,20 +30,23 @@ export default function SingleProduct() {
         className="siteBanner"
         alt="Shop Direct Banner"
       />
-      <h1>Product Details</h1>
-      <div className="singleProducts">
-        <img src={singleProduct.image} alt={singleProduct.title} />
-        <div className="singleProductDescrip">
-          <h2>{singleProduct.title}</h2>
-          <p>
-            {singleProduct.rating?.rate} stars {singleProduct.rating?.count}{" "}
-            reviews
-          </p>
-          <p>{singleProduct.description}</p>
-          <div className="price-btn">
-            <span className="price">${singleProduct.price}</span>
+
+      <div className="single-container">
+        <h1>Product Details</h1>
+        <div className="singleProducts">
+          <img src={singleProduct.image} alt={singleProduct.title} />
+          <div className="singleProductDescrip">
+            <h2>{singleProduct.title}</h2>
+            <p>
+              {singleProduct.rating?.rate} stars {singleProduct.rating?.count}{" "}
+              reviews
+            </p>
+            <p>{singleProduct.description}</p>
+            <div className="price-btn">
+              <span className="price">${singleProduct.price}</span>
+            </div>
+            <button className="add-to-cart-btn">Add to Cart</button>
           </div>
-          <button className="add-to-cart-btn">Add to Cart</button>
         </div>
       </div>
     </>
