@@ -19,7 +19,7 @@ export default function Navigation({ setShowLogin }) {
       <li>
         <div className="signInContainer">
           <Icon>person</Icon>
-          <Link to="/" onClick={() => setShowLogin(true)}>
+          <Link to="/login" onClick={() => setShowLogin(true)}>
             Sign In
           </Link>
         </div>
