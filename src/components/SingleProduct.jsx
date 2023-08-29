@@ -32,7 +32,7 @@ export default function SingleProduct() {
       />
 
       <div className="single-container">
-        <h1>Product Details</h1>
+        {/* <h1>Product Details</h1> */}
         <div className="singleProducts">
           <img src={singleProduct.image} alt={singleProduct.title} />
           <div className="singleProductDescrip">
