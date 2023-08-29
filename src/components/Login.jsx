@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navigation from "./Navigation";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -23,26 +24,38 @@ export default function Login() {
   };
 
   return (
-    <>
-      <h1>Login</h1>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
+    <div className="login-container">
+      <Navigation />
+      <img
+        src="../src/assets/banner.png"
+        className="siteBanner"
+        alt="Shop Direct Banner"
+      />
+      <div className="login-content">
+        <h1>Login</h1>
+        <form>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
 
-      <label>
-        Password:
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button>Sign In</button>
-    </>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <div className="login-btn">
+            <button>Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
