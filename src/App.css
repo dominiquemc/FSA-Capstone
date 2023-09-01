@@ -42,7 +42,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: 20% 20% 20%;
+  grid-template-columns: repeat(3, 20%);
   justify-content: center;
   margin: 10px;
 }
@@ -76,10 +76,9 @@
   gap: 10px;
   justify-content: space-evenly;
   width: 100%;
-  background-color: #120052;
-
+  background-color: var(--primary-color-blue);
   align-items: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 .navigation ul {
@@ -88,17 +87,18 @@
 
 .navigation li {
   list-style-type: none;
-  color: rgb(255, 255, 255);
+  color: var(--secondary-color-white);
+  margin-top: 10px;
 }
 
 .navigation li:hover {
-  border-bottom: 3px solid #ff914d;
+  border-bottom: 3px solid var(--web-hover-orange);
   transition: border-width 0.2s linear;
 }
 
 .navigation a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: var(--secondary-color-white);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.1rem;
@@ -169,7 +169,7 @@
   display: flex;
   flex-direction: column;
   padding: 15px 25px;
-  background-color: #ffc254;
+  background-color: var(--btn-color-mango);
   border: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -192,7 +192,7 @@
 }
 
 .sortbar select {
-  background-color: #120052;
+  background-color: var(--primary-color-blue);
   border-radius: 10px;
   text-align: center;
   padding-left: 5px;
@@ -201,7 +201,7 @@
 /* Footer  */
 
 .footer {
-  background-color: #120052;
+  background-color: var(--primary-color-blue);
   padding: 20px;
 }
 
@@ -234,7 +234,7 @@ form input {
   border-radius: 10px;
   width: 100%;
   border: none;
-  background-color: #22174b;
+  background-color: var(--form-input-purple);
 }
 
 form label {
@@ -249,7 +249,7 @@ form label {
 .login-btn button {
   padding: 10px 30px;
   text-align: center;
-  background-color: #120052;
+  background-color: var(--primary-color-blue);
   margin-top: 10px;
   border-radius: 10px;
   font-size: 1.1rem;
@@ -259,11 +259,10 @@ form label {
 }
 
 .login-btn button:hover {
-  background-color: #ff914d;
-  color: #120052;
+  background-color: var(--web-hover-orange);
+  color: var(--primary-color-blue);
   transform: scale(1.1);
-  border-bottom: 1px solid #120052;
-  border-right: 1px solid #120052;
+  border: 0 1px 1px 0 solid var(--primary-color-blue);
 }
 /* Media Queries */
 
