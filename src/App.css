@@ -112,6 +112,51 @@
   padding: 0 5px;
 }
 
+/* Searchbar */
+
+input {
+  background-color: transparent;
+  border: 1px solid var(--web-hover-orange);
+  border-radius: 8px;
+  margin-left: 5px;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  width: 250px;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Sortbar */
+
+.sortbar label {
+  margin-right: 5px;
+}
+
+.sortbar select {
+  background-color: var(--primary-color-blue);
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  outline: none;
+}
+
+/* Sort and Searchbar */
+
+.sort-search {
+  display: flex;
+  align-items: center;
+}
+
+.sortbar,
+.inputWrapper {
+  display: flex;
+  padding: 5px;
+  margin-top: 5px;
+  align-items: center;
+}
+
 /* SingleProduct.jsx */
 
 .singleProducts {
@@ -179,32 +224,6 @@
   font-size: 1rem;
 }
 
-/* Sortbar */
-
-.sortbar {
-  display: flex;
-  padding: 5px;
-  margin-top: 5px;
-}
-
-.sortbar label {
-  margin-right: 5px;
-}
-
-.sortbar select {
-  background-color: var(--primary-color-blue);
-  border-radius: 10px;
-  text-align: center;
-  padding-left: 5px;
-}
-
-/* Footer  */
-
-.footer {
-  background-color: var(--primary-color-blue);
-  padding: 20px;
-}
-
 /* Login */
 
 .login-container {
@@ -264,6 +283,14 @@ form label {
   transform: scale(1.1);
   border: 0 1px 1px 0 solid var(--primary-color-blue);
 }
+
+/* Footer  */
+
+.footer {
+  background-color: var(--primary-color-blue);
+  padding: 20px;
+}
+
 /* Media Queries */
 
 @media (min-width: 1250px) and (max-width: 1500px) {
