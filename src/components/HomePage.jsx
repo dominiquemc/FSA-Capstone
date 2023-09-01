@@ -7,7 +7,6 @@ export default function HomePage() {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <div className="home-container">
-      <div className="navigation"></div>
       <img
         src="./src/assets/banner.png"
         className="siteBanner"
