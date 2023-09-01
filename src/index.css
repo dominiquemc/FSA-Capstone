@@ -2,16 +2,19 @@
   font-family: "Montserrat", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
   background-color: #ffffff;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --primary-color-blue: #120052;
+  --secondary-color-white: #fff;
+  --btn-color-mango: #ffc254;
+  --form-input-purple: #22174b;
+  --web-hover-orange: #ff914d;
 }
 
 body,
