@@ -24,7 +24,6 @@ export default function SingleProduct() {
 
   return (
     <>
-      <Navigation />
       <img
         src="../src/assets/banner.png"
         className="siteBanner"
