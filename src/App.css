@@ -78,7 +78,7 @@
   width: 100%;
   background-color: var(--primary-color-blue);
   align-items: center;
-  padding: 5px;
+  padding: 10px;
 }
 
 .navigation ul {
@@ -88,7 +88,7 @@
 .navigation li {
   list-style-type: none;
   color: var(--secondary-color-white);
-  margin-top: 10px;
+  margin: 5px;
 }
 
 .navigation li:hover {
