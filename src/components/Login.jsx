@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navigation from "./Navigation";
 
 export default function Login() {
   const [username, setUsername] = useState("");
