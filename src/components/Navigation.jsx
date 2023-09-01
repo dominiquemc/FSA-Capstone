@@ -16,6 +16,7 @@ export default function Navigation({ setShowLogin }) {
       <li>
         <Link to="/">Electronics</Link>
       </li>
+
       <li>
         <div className="signInContainer">
           <Icon>person</Icon>
