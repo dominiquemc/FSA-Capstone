@@ -25,7 +25,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <Navigation />
       <img
         src="../src/assets/banner.png"
         className="siteBanner"
