@@ -13,7 +13,7 @@ export default function HomePage() {
         alt="Shop Direct Banner"
       />
 
-      <div className="home">{showLogin ? <Login /> : <AllProducts />}</div>
+      {/* <div className="home">{showLogin ? <Login /> : <AllProducts />}</div> */}
     </div>
   );
 }
