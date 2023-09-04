@@ -21,6 +21,16 @@ export default function AllProducts() {
     fetchProducts();
   }, []);
 
+  const handleSortChange = (method) => {
+    const sorted = [...filteredProducts];
+    if (method === "ascending") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (method === "descending") {
+      sorted.sort((a, b) => b.title.localeCompare(a.title));
+    }
+    setFilteredProducts(sorted);
+  };
+
   const filterProducts = (query) => {
     if (query.trim() === "") {
       setFilteredProducts(products);
@@ -28,13 +38,17 @@ export default function AllProducts() {
       const filtered = products.filter((product) =>
         product.title.toLowerCase().includes(query.toLowerCase())
       );
+
       setFilteredProducts(filtered);
     }
   };
   return (
     <div className="allProducts-list">
       <div className="sort-search">
-        <SortProducts setSortedProducts={setProducts} />
+        <SortProducts
+          onSortChange={handleSortChange}
+          setProducts={setProducts}
+        />
         <Searchbar filterProducts={filterProducts} />
       </div>
       <ul className="products">
