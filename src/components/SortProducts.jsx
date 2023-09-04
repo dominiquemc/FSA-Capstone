@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 
-export default function SortProducts({ setSortedProducts }) {
+export default function SortProducts({ onSortChange, setProducts }) {
   const [sortMethod, setSortMethod] = useState("none");
 
-  const sortMethods = {
-    none: { method: (a, b) => 0 },
-    ascending: { method: (a, b) => a.localeCompare(b) },
-    descending: { method: (a, b) => b.localeCompare(a) },
+  const handleSortChange = (method) => {
+    setSortMethod(method);
+    onSortChange(method);
   };
 
   useEffect(() => {
@@ -16,7 +15,7 @@ export default function SortProducts({ setSortedProducts }) {
           `https://fakestoreapi.com/products?sort=${sortMethod}`
         );
         const result = await response.json();
-        setSortedProducts(result);
+        setProducts(result);
         console.log(result);
       } catch (err) {
         console.log(err);
@@ -25,17 +24,17 @@ export default function SortProducts({ setSortedProducts }) {
     if (sortMethod !== "none") {
       fetchSortedProducts();
     }
-  }, [sortMethod, setSortedProducts]);
+  }, [sortMethod, setProducts]);
 
   return (
     <div className="sortbar">
       <label>Sort by:</label>
       <select
         value={sortMethod}
-        onChange={(e) => setSortMethod(e.target.value)}
+        onChange={(e) => handleSortChange(e.target.value)}
       >
-        <option value="asc">Ascending (a-z)</option>
-        <option value="desc">Descending (z-a)</option>
+        <option value="ascending">Ascending (a-z)</option>
+        <option value="descending">Descending (z-a)</option>
       </select>
     </div>
   );
