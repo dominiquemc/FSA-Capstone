@@ -5,7 +5,7 @@ export default function Men() {
   const [mensProducts, setMensProducts] = useState([]);
 
   useEffect(() => {
-    const fetchClothingProducts = async () => {
+    const fetchMenProducts = async () => {
       try {
         const response = await fetch(
           "https://fakestoreapi.com/products/category/men's clothing"
@@ -16,7 +16,7 @@ export default function Men() {
         console.log(err);
       }
     };
-    fetchClothingProducts();
+    fetchMenProducts();
   }, []);
 
   return (
