@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navigation from "./Navigation";
 
 export default function SingleProduct() {
   const { productId } = useParams();
@@ -24,14 +23,7 @@ export default function SingleProduct() {
 
   return (
     <>
-      <img
-        src="../src/assets/banner.png"
-        className="siteBanner"
-        alt="Shop Direct Banner"
-      />
-
       <div className="single-container">
-        {/* <h1>Product Details</h1> */}
         <div className="singleProducts">
           <img src={singleProduct.image} alt={singleProduct.title} />
           <div className="singleProductDescrip">
