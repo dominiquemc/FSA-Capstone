@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Men() {
   const [mensProducts, setMensProducts] = useState([]);
@@ -24,7 +25,18 @@ export default function Men() {
       <ul className="products">
         {mensProducts.map((product) => (
           <main key={product.id} className="allProducts">
-            <li>{product.title}</li>
+            <Link to={`/products/${product.id}`}>
+              <img
+                src={product.image}
+                className="productImages"
+                alt="Product for sale"
+              />
+              <li>{product.title}</li>
+            </Link>
+            <li>
+              {product.rating.rate} stars {product.rating.count} reviews
+            </li>
+            <li>${product.price}</li>
           </main>
         ))}
       </ul>
