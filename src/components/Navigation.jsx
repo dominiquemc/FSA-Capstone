@@ -8,13 +8,13 @@ export default function Navigation({ setShowLogin }) {
         <Link to="/">Shop All Products</Link>
       </li>
       <li>
-        <Link to="/men">Men</Link>
-      </li>
-      <li>
         <Link to="/women">Women</Link>
       </li>
       <li>
-        <Link to="/">Jewelry</Link>
+        <Link to="/men">Men</Link>
+      </li>
+      <li>
+        <Link to="/jewelry">Jewelry</Link>
       </li>
       <li>
         <Link to="/electronics">Electronics</Link>
