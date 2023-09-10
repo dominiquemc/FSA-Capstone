@@ -6,22 +6,19 @@ import Login from "./components/Login";
 import "./App.css";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
+import Electronics from "./components/Electronics";
+import Men from "./components/MensClothing";
 
 function App() {
   return (
     <>
       <Navigation />
+      <HomePage />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <HomePage />
-              <AllProducts />
-            </>
-          }
-        />
+        <Route path="/" element={<AllProducts />} />
         <Route path="/products/:productId" element={<SingleProduct />} />
+        <Route path="/electronics" element={<Electronics />} />
+        <Route path="/men" element={<Men />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
