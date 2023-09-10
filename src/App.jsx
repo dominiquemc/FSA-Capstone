@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Electronics from "./components/Electronics";
 import Men from "./components/MensClothing";
 import Women from "./components/WomensClothing";
+import Jewelry from "./components/Jewelry";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<AllProducts />} />
         <Route path="/products/:productId" element={<SingleProduct />} />
         <Route path="/electronics" element={<Electronics />} />
+        <Route path="/jewelry" element={<Jewelry />} />
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/login" element={<Login />} />
