@@ -67,6 +67,8 @@ export default function AllProducts() {
               {product.rating.rate} stars {product.rating.count} reviews
             </li>
             <li>${product.price}</li>
+
+            <button className="add-btn-main add">Add to Cart</button>
           </main>
         ))}
       </ul>
