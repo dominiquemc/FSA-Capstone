@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function SingleProduct() {
+export default function SingleProduct({ addToCart, singleProduct }) {
   const { productId } = useParams();
-  const [singleProduct, setSingleProduct] = useState({});
 
   useEffect(() => {
-    console.log("Product ID:", productId);
     const fetchSingleProduct = async () => {
       try {
         const response = await fetch(
@@ -36,7 +34,12 @@ export default function SingleProduct() {
             <div className="price-btn">
               <span className="price">${singleProduct.price}</span>
             </div>
-            <button className="add-to-cart-btn">Add to Cart</button>
+            <button
+              className="add-to-cart-btn"
+              onClick={() => addToCart(singleProduct)}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
