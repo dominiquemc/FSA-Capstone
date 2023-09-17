@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "@mui/material/Icon";
 
-export default function Navigation({ setShowLogin }) {
+export default function Navigation({ isLoggedIn }) {
   return (
     <ul className="navigation">
       <li>
@@ -19,28 +19,36 @@ export default function Navigation({ setShowLogin }) {
       <li>
         <Link to="/electronics">Electronics</Link>
       </li>
-      <div className="grouped">
-        <li>
-          <div className="signInContainer">
-            <Icon>app_registration</Icon>
-            <Link to="/register">Register</Link>
-          </div>
-        </li>
 
+      {!isLoggedIn ? (
+        <div className="grouped">
+          <li>
+            <div className="signInContainer">
+              <Icon>app_registration</Icon>
+              <Link to="/register">Register</Link>
+            </div>
+          </li>
+          <>
+            <li>
+              <div className="signInContainer">
+                <Icon>person</Icon>
+                <Link to="/login">Login</Link>
+              </div>
+            </li>
+          </>
+        </div>
+      ) : (
         <li>
-          <div className="signInContainer">
-            <Icon>person</Icon>
-            <Link to="/login">Login</Link>
-          </div>
+          <Link to="/">Logout</Link>
         </li>
+      )}
 
-        <li>
-          <div className="signInContainer">
-            <Icon>shopping_cart</Icon>
-            <Link to="/cart">Cart</Link>
-          </div>
-        </li>
-      </div>
+      <li>
+        <div className="signInContainer">
+          <Icon>shopping_cart</Icon>
+          <Link to="/cart">Cart</Link>
+        </div>
+      </li>
     </ul>
   );
 }
