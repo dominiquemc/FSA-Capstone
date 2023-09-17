@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SortProducts from "./SortProducts";
 import Searchbar from "./Searchbar";
 
-export default function AllProducts() {
+export default function AllProducts({ addToCart, singleProduct }) {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -68,7 +68,12 @@ export default function AllProducts() {
             </li>
             <li>${product.price}</li>
 
-            <button className="add-btn-main add">Add to Cart</button>
+            <button
+              className="add-btn-main add"
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
           </main>
         ))}
       </ul>
