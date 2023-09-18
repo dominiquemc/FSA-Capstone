@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -14,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [formInfo, setFormInfo] = useState({
     username: "",
     password: "",
@@ -22,7 +23,7 @@ export default function Login() {
 
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const navigate = useNavigate();
   const defaultTheme = createTheme();
 
   const handleInputChange = (e) => {
@@ -46,6 +47,8 @@ export default function Login() {
       if (response.ok) {
         setIsLoggedIn(true);
         setError("");
+        navigate("/");
+        onLogin();
       } else {
         const errorData = await response.json();
         setError(errorData.message);
