@@ -130,30 +130,65 @@
 
 /* Cart  */
 
-.cart-quantity {
-  color: white;
-  background-color: red;
-  font-size: 1rem;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-left: 4px;
-}
-
-.cart-items ul {
-  list-style: none;
-}
-
-.cart-image {
-  width: 85px;
-}
-
-.cartRow {
+.cart-item {
   display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.cart-test {
-  border: 1px solid blue;
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  object-fit: contain;
 }
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cart-item-quantity,
+.cart-item-price {
+  font-size: 1rem;
+  color: #777;
+}
+
+.remove-item-btn {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.remove-item-btn:hover {
+  background-color: #ff4832;
+}
+
+/* MD Bootstrap Cart styles */
+
+.form-outline {
+  margin-bottom: 20px;
+}
+
+.form-outline.form-white .form-control ~ .form-label {
+  font-size: 0.9rem;
+}
+
+.btn-warning {
+  margin-right: 10px;
+}
+
 /* Searchbar */
 
 input {
