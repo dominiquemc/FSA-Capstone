@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../CartContext";
+import { useNavigate } from "react-router-dom";
 import {
   MDBBtn,
   MDBCard,
@@ -13,9 +14,16 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 
-export default function Cart() {
+export default function Cart({ isLoggedIn }) {
   const { cart, removeFromCart, clearCart } = useCart();
   const [cartTotal, setCartTotal] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const total = cart.reduce(
@@ -31,6 +39,10 @@ export default function Cart() {
 
   const handleClearCart = () => {
     clearCart();
+  };
+
+  const handleCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -101,9 +113,6 @@ export default function Cart() {
                         >
                           Clear Cart
                         </button>
-                        <button type="button" className="btn btn-info">
-                          Checkout
-                        </button>
                       </div>
                     )}
                   </MDBCol>
@@ -139,6 +148,7 @@ export default function Cart() {
                             size="lg"
                             placeholder="Cardholder's Name"
                             contrast
+                            required
                           />
 
                           <MDBInput
@@ -150,6 +160,7 @@ export default function Cart() {
                             maxLength="19"
                             placeholder="1234 5678 9012 3457"
                             contrast
+                            required
                           />
 
                           <MDBRow className="mb-4">
@@ -163,6 +174,7 @@ export default function Cart() {
                                 maxLength="7"
                                 placeholder="MM/YYYY"
                                 contrast
+                                required
                               />
                             </MDBCol>
                             <MDBCol md="6">
@@ -175,6 +187,7 @@ export default function Cart() {
                                 maxLength="3"
                                 placeholder="&#9679;&#9679;&#9679;"
                                 contrast
+                                required
                               />
                             </MDBCol>
                           </MDBRow>
@@ -198,10 +211,9 @@ export default function Cart() {
                         </div>
 
                         <MDBBtn color="info" block size="lg">
-                          <div className="d-flex justify-content-between">
-                            <span>${cartTotal}</span>
-                            <span>
-                              Checkout{" "}
+                          <div className="d-flex justify-content-center">
+                            <span onClick={handleCheckout}>
+                              Checkout
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>
                             </span>
                           </div>
