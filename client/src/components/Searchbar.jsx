@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import AllProducts from "./AllProducts";
 
 export default function Searchbar({ filterProducts }) {
   const [query, setQuery] = useState("");
@@ -13,7 +12,7 @@ export default function Searchbar({ filterProducts }) {
     <div className="inputWrapper">
       <FaSearch id="search" />
       <input
-        type="searchbar"
+        type="text"
         name="searchbar"
         id="searchbar"
         placeholder="Search for a product..."
