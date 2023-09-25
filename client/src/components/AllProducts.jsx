@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SortProducts from "./SortProducts";
 import Searchbar from "./Searchbar";
+import { useCart } from "../CartContext";
 
-export default function AllProducts({ addToCart, singleProduct }) {
+export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,17 +40,14 @@ export default function AllProducts({ addToCart, singleProduct }) {
       const filtered = products.filter((product) =>
         product.title.toLowerCase().includes(query.toLowerCase())
       );
-
       setFilteredProducts(filtered);
     }
   };
+
   return (
     <div className="allProducts-list">
       <div className="sort-search">
-        <SortProducts
-          onSortChange={handleSortChange}
-          setProducts={setProducts}
-        />
+        <SortProducts onSortChange={handleSortChange} />
         <Searchbar filterProducts={filterProducts} />
       </div>
       <ul className="products">
@@ -60,7 +59,6 @@ export default function AllProducts({ addToCart, singleProduct }) {
                 className="productImages"
                 alt="Product for sale"
               />
-
               <li>{product.title}</li>
             </Link>
             <li>
