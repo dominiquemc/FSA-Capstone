@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as React from "react";
+import { useCart } from "../CartContext";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,6 +15,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+// Create a default theme (Material UI)
+const defaultTheme = createTheme();
+
 export default function Login({ onLogin }) {
   const [formInfo, setFormInfo] = useState({
     username: "",
@@ -24,8 +27,9 @@ export default function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const defaultTheme = createTheme();
+  const { setCart } = useCart();
 
+  // Input field changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormInfo({
@@ -34,6 +38,7 @@ export default function Login({ onLogin }) {
     });
   };
 
+  // Handle user login
   const handleLogin = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/auth/login", {
@@ -45,20 +50,35 @@ export default function Login({ onLogin }) {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+
+        // Storing user in localStorage
+        localStorage.setItem("token", token);
+
         setIsLoggedIn(true);
         setError("");
+        // Return to homepage after a user logs in
         navigate("/");
         onLogin();
+
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCart(storedCart);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
       }
     } catch (err) {
       setError(
-        "An error occurred. Please verify login credentials and try again"
+        "An error has occurred. Please verify login credentials and try again"
       );
     }
   };
+
+  useEffect(() => {
+    const userIsLoggedIn = true;
+    setIsLoggedIn(userIsLoggedIn);
+  }, []);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -82,7 +102,7 @@ export default function Login({ onLogin }) {
             component="form"
             onSubmit={(e) => {
               e.preventDefault();
-              handleLogin(); // Call handleLogin directly
+              handleLogin();
             }}
             noValidate
             sx={{ mt: 1, width: "100%" }}
@@ -94,7 +114,7 @@ export default function Login({ onLogin }) {
               id="username"
               label="Username"
               name="username"
-              value={formInfo.username} // Corrected from FormData.username
+              value={formInfo.username}
               onChange={handleInputChange}
               autoComplete="username"
               autoFocus
@@ -107,7 +127,7 @@ export default function Login({ onLogin }) {
               label="Password"
               type="password"
               id="password"
-              value={formInfo.password} // Corrected from FormData.password
+              value={formInfo.password}
               onChange={handleInputChange}
               autoComplete="current-password"
             />
@@ -117,9 +137,7 @@ export default function Login({ onLogin }) {
             />
 
             {error && <Typography color="error">{error}</Typography>}
-            {isLoggedIn && (
-              <Typography color="success">Login Successful.</Typography>
-            )}
+
             <Button
               type="submit"
               fullWidth
@@ -129,6 +147,7 @@ export default function Login({ onLogin }) {
                 mb: 2,
                 backgroundColor: "#22174b",
               }}
+              onClick={() => onLogin()}
             >
               Sign In
             </Button>
