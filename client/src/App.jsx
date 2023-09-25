@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AllProducts from "./components/AllProducts";
 import HomePage from "./components/HomePage";
@@ -14,6 +14,7 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import { CartProvider } from "./CartContext";
+import Checkout from "./components/Checkout";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -42,6 +43,13 @@ export default function App() {
     // Add product to cart
     setCart([...cart, product]);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   // Login function
   const handleLogin = () => {
@@ -115,7 +123,11 @@ export default function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart isLoggedIn={isLoggedIn} />} />
+          <Route
+            path="/checkout"
+            element={<Checkout isLoggedIn={isLoggedIn} />}
+          />
         </Routes>
         <Footer />
       </div>
