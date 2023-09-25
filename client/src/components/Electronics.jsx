@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../CartContext";
 
-export default function Electronics({ category, addToCart, cart }) {
+export default function Electronics({ category, cart }) {
   const [electronicProducts, setElectronicProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchElectronicProducts = async () => {
@@ -18,11 +20,6 @@ export default function Electronics({ category, addToCart, cart }) {
     };
     fetchElectronicProducts();
   }, [category]);
-
-  // add electronic to cart
-  const handleAddToCart = (product) => {
-    addToCart(product);
-  };
 
   return (
     <div className="allProducts-list">
@@ -45,7 +42,7 @@ export default function Electronics({ category, addToCart, cart }) {
             <li className="product-price">${product.price}</li>
             <button
               className="add-btn-main add"
-              onClick={() => handleAddToCart(product)}
+              onClick={() => addToCart(product)}
             >
               Add to Cart
             </button>
