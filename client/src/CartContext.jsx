@@ -8,6 +8,7 @@ export function useCart() {
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex(
@@ -62,6 +63,7 @@ export function CartProvider({ children }) {
     <CartContext.Provider
       value={{
         cart,
+        cartTotal,
         totalQuantity,
         totalPrice,
         addToCart,
