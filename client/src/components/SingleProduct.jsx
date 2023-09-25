@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function SingleProduct({ addToCart, singleProduct }) {
+export default function SingleProduct({ addToCart }) {
   const { productId } = useParams();
+  const [singleProduct, setSingleProduct] = useState(null);
 
   useEffect(() => {
     const fetchSingleProduct = async () => {
