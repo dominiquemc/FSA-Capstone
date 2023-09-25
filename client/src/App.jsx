@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import AllProducts from "./components/AllProducts";
-import SingleProduct from "./components/SingleProduct";
-import Login from "./components/Login";
 import "./App.css";
+import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import AllProducts from "./components/AllProducts";
+import HomePage from "./components/HomePage";
+import SingleProduct from "./components/SingleProduct";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import Electronics from "./components/Electronics";
@@ -12,45 +12,113 @@ import Women from "./components/WomensClothing";
 import Jewelry from "./components/Jewelry";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
-import { useState } from "react";
+import Login from "./components/Login";
+import { CartProvider } from "./CartContext";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-function App() {
-  const [cart, setCart] = useState([]);
+export default function App() {
+  const [selectedCategory, setSelectedCategory] = useState("default");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const addToCart = (product) => {
-    const existingProduct = cart.findIndex((item) => item.id === product.id);
+  const navigate = useNavigate();
 
-    if (existingProduct !== -1) {
-      const updateCart = [...cart];
-      updateCart[existingProduct].quantity += 1;
-      setCart(updateCart);
+  const handleCategoryClick = (category) => {
+    if (category === "electronics") {
+      navigate("/electronics");
+    } else if (category === "jewelry") {
+      navigate("/jewelry");
+    } else if (category === "men's clothing") {
+      navigate("/men");
+    } else if (category === "women's clothing") {
+      navigate("/women");
     } else {
-      // add product to cart {
-      setCart([...cart, { ...product, quantity: 1 }]);
+      navigate("/");
     }
   };
 
+  const [cart, setCart] = useState([]);
+  const addToCart = (product) => {
+    // Add product to cart
+    setCart([...cart, product]);
+  };
+
+  // Login function
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
-    <>
-      <Navigation />
-      <HomePage />
-      <Routes>
-        <Route path="/" element={<AllProducts />} />
-        <Route
-          path="/products/:productId"
-          element={<SingleProduct addToCart={addToCart} />}
+    <CartProvider>
+      <div>
+        <Navigation
+          setSelectedCategory={handleCategoryClick}
+          isLoggedIn={isLoggedIn}
+          handleLogout={handleLogout}
+          cartItemCount={cart.length}
         />
-        <Route path="/electronics" element={<Electronics />} />
-        <Route path="/jewelry" element={<Jewelry />} />
-        <Route path="/men" element={<Men />} />
-        <Route path="/women" element={<Women />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
-      </Routes>
-      <Footer />
-    </>
+        <HomePage />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AllProducts
+                addToCart={addToCart}
+                cart={cart}
+                category={selectedCategory}
+              />
+            }
+          />
+          <Route path="/products/:productId" element={<SingleProduct />} />
+          <Route
+            path="/electronics"
+            element={
+              <Electronics
+                addToCart={addToCart}
+                cart={cart}
+                category="electronics"
+              />
+            }
+          />
+          <Route
+            path="/jewelry"
+            element={
+              <Jewelry addToCart={addToCart} cart={cart} category="jewelery" />
+            }
+          />
+          <Route
+            path="/men"
+            element={
+              <Men
+                addToCart={addToCart}
+                cart={cart}
+                category="men's clothing"
+              />
+            }
+          />
+          <Route
+            path="/women"
+            element={
+              <Women
+                addToCart={addToCart}
+                cart={cart}
+                category="women's clothing"
+              />
+            }
+          />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
-
-export default App;
