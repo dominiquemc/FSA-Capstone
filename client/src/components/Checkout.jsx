@@ -27,6 +27,10 @@ export default function Checkout({ isLoggedIn }) {
     }
   }, [isLoggedIn, navigate]);
 
+  const handlePurchase = () => {
+    window.alert("Thank you for your purchase!");
+  };
+
   return (
     <div className="mx-auto mt-5" style={{ maxWidth: "900px" }}>
       <MDBRow>
@@ -88,7 +92,7 @@ export default function Checkout({ isLoggedIn }) {
                 </MDBListGroupItem>
               </MDBListGroup>
 
-              <MDBBtn size="lg" block>
+              <MDBBtn size="lg" block onClick={handlePurchase}>
                 Make purchase
               </MDBBtn>
             </MDBCardBody>
