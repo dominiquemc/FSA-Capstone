@@ -91,6 +91,8 @@ export function CartProvider({ children }) {
         addToCart,
         removeFromCart,
         clearCart,
+        setCart,
+        setCartTotal,
       }}
     >
       {children}
