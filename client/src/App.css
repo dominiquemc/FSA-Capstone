@@ -175,6 +175,13 @@
   background-color: #ff4832;
 }
 
+.cart-inc-dec {
+  border: none;
+  padding: 0 8px;
+  margin: 5px;
+  background-color: var(--primary-color-blue);
+  border-radius: 5px;
+}
 /* MD Bootstrap Cart styles */
 
 .form-outline {
