@@ -23,26 +23,30 @@ export default function SingleProduct({ addToCart }) {
   return (
     <>
       <div className="single-container">
-        <div className="singleProducts">
-          <img src={singleProduct.image} alt={singleProduct.title} />
-          <div className="singleProductDescrip">
-            <h2>{singleProduct.title}</h2>
-            <p>
-              {singleProduct.rating?.rate} stars {singleProduct.rating?.count}{" "}
-              reviews
-            </p>
-            <p>{singleProduct.description}</p>
-            <div className="price-btn">
-              <span className="price">${singleProduct.price}</span>
+        {singleProduct ? (
+          <div className="singleProducts">
+            <img src={singleProduct.image} alt={singleProduct.title} />
+            <div className="singleProductDescrip">
+              <h2>{singleProduct.title}</h2>
+              <p>
+                {singleProduct.rating?.rate} stars {singleProduct.rating?.count}
+                reviews
+              </p>
+              <p>{singleProduct.description}</p>
+              <div className="price-btn">
+                <span className="price">${singleProduct.price}</span>
+              </div>
+              <button
+                className="add-to-cart-btn"
+                onClick={() => addToCart(productId)}
+              >
+                Add to Cart
+              </button>
             </div>
-            <button
-              className="add-to-cart-btn"
-              onClick={() => addToCart(productId)}
-            >
-              Add to Cart
-            </button>
           </div>
-        </div>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </>
   );
