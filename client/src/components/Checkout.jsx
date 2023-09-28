@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../CartContext";
 
 import {
   MDBBtn,
@@ -16,8 +17,9 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 
-export default function Basic({ cartTotal, isLoggedIn }) {
+export default function Checkout({ isLoggedIn }) {
   const navigate = useNavigate();
+  const { cartTotal } = useCart();
 
   useEffect(() => {
     if (!isLoggedIn) {
