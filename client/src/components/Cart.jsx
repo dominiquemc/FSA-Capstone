@@ -115,8 +115,9 @@ export default function Cart({ isLoggedIn }) {
                               <div className="cart-item-details">
                                 <p className="cart-item-title">{item.title}</p>
                                 <div className="cart-item-quantity">
-                                  Quantity:{" "}
+                                  Quantity:
                                   <button
+                                    className="cart-inc-dec"
                                     onClick={() =>
                                       handleDecreaseQuantity(item.id)
                                     }
@@ -125,6 +126,7 @@ export default function Cart({ isLoggedIn }) {
                                   </button>
                                   {item.quantity}
                                   <button
+                                    className="cart-inc-dec"
                                     onClick={() =>
                                       handleIncreaseQuantity(item.id)
                                     }
