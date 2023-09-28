@@ -76,8 +76,10 @@ export default function Login({ onLogin }) {
   };
 
   useEffect(() => {
-    const userIsLoggedIn = true;
-    setIsLoggedIn(userIsLoggedIn);
+    const userToken = localStorage.getItem("token");
+    if (userToken) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   return (
