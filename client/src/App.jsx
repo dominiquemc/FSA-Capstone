@@ -21,7 +21,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("default");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const [cart, setCart] = useState(initialCart);
   const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
@@ -38,10 +39,11 @@ export default function App() {
     }
   };
 
-  const [cart, setCart] = useState([]);
   const addToCart = (product) => {
-    // Add product to cart
-    setCart([...cart, product]);
+    // Add product to cart / maintain cart
+    const updatedCart = [...cart, product];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
 
   useEffect(() => {
@@ -84,7 +86,10 @@ export default function App() {
               />
             }
           />
-          <Route path="/products/:productId" element={<SingleProduct />} />
+          <Route
+            path="/products/:productId"
+            element={<SingleProduct addToCart={addToCart} />}
+          />
           <Route
             path="/electronics"
             element={
@@ -121,7 +126,10 @@ export default function App() {
               />
             }
           />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register onLogin={handleLogin} />}
+          />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/cart" element={<Cart isLoggedIn={isLoggedIn} />} />
           <Route
