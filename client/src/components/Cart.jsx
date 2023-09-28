@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCart } from "../CartContext";
 import { useNavigate } from "react-router-dom";
 import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCol,
   MDBContainer,
   MDBIcon,
@@ -15,8 +14,15 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function Cart({ isLoggedIn }) {
-  const { cart, removeFromCart, clearCart, totalPrice } = useCart();
-  const [cartTotal, setCartTotal] = useState(0);
+  const {
+    cart,
+    removeFromCart,
+    clearCart,
+    totalPrice,
+    setCart,
+    cartTotal,
+    setCartTotal,
+  } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +49,24 @@ export default function Cart({ isLoggedIn }) {
 
   const handleCheckout = () => {
     navigate("/checkout");
+  };
+
+  const handleIncreaseQuantity = (productId) => {
+    const updatedCart = cart.map((item) =>
+      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+
+    setCart(updatedCart);
+  };
+
+  const handleDecreaseQuantity = (productId) => {
+    const updatedCart = cart.map((item) =>
+      item.id === productId && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+
+    setCart(updatedCart);
   };
 
   return (
@@ -90,9 +114,24 @@ export default function Cart({ isLoggedIn }) {
                               />
                               <div className="cart-item-details">
                                 <p className="cart-item-title">{item.title}</p>
-                                <p className="cart-item-quantity">
-                                  Quantity: {item.quantity}
-                                </p>
+                                <div className="cart-item-quantity">
+                                  Quantity:{" "}
+                                  <button
+                                    onClick={() =>
+                                      handleDecreaseQuantity(item.id)
+                                    }
+                                  >
+                                    -
+                                  </button>
+                                  {item.quantity}
+                                  <button
+                                    onClick={() =>
+                                      handleIncreaseQuantity(item.id)
+                                    }
+                                  >
+                                    +
+                                  </button>
+                                </div>
                                 <p className="cart-item-price">
                                   Price: ${item.price * item.quantity}
                                 </p>
@@ -106,7 +145,9 @@ export default function Cart({ isLoggedIn }) {
                             </div>
                           ))}
                         </div>
-                        <p className="cart-total">Total: ${totalPrice}</p>
+                        <p className="cart-total">
+                          Total: ${totalPrice.toFixed(2)}
+                        </p>
                         <button
                           onClick={handleClearCart}
                           className="btn btn-warning"
@@ -201,7 +242,7 @@ export default function Cart({ isLoggedIn }) {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">${totalPrice}</p>
+                          <p className="mb-2">${totalPrice.toFixed(2)}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
@@ -211,7 +252,7 @@ export default function Cart({ isLoggedIn }) {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Total(Incl. taxes)</p>
-                          <p className="mb-2">${cartTotal}</p>
+                          <p className="mb-2">${cartTotal.toFixed(2)}</p>
                         </div>
 
                         <MDBBtn color="info" block size="lg">
