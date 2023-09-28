@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function Register() {
+export default function Register({ onLogin }) {
   const [formInfo, setFormInfo] = useState({
     email: "",
     username: "",
@@ -20,7 +21,7 @@ export default function Register() {
 
   const [error, setError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
-
+  const navigate = useNavigate();
   const defaultTheme = createTheme();
 
   const handleInputChange = (e) => {
@@ -44,12 +45,19 @@ export default function Register() {
       if (response.ok) {
         setIsRegistered(true);
         setError("");
+
+        console.log("Registration successful");
+
+        onLogin();
+        navigate("/");
       } else {
         const errorData = await response.json();
-        setError(errorData.message);
+        setError(errorData.error);
+        console.error("Registration error:", errorData.error);
       }
     } catch (err) {
       setError("Unable to register. An error has occurred.");
+      console.error("Registration error:", err);
     }
   };
 
