@@ -15,7 +15,7 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function Cart({ isLoggedIn }) {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, totalPrice } = useCart();
   const [cartTotal, setCartTotal] = useState(0);
   const navigate = useNavigate();
 
@@ -106,7 +106,7 @@ export default function Cart({ isLoggedIn }) {
                             </div>
                           ))}
                         </div>
-                        <p className="cart-total">Total: ${cartTotal}</p>
+                        <p className="cart-total">Total: ${totalPrice}</p>
                         <button
                           onClick={handleClearCart}
                           className="btn btn-warning"
@@ -144,6 +144,7 @@ export default function Cart({ isLoggedIn }) {
                           <MDBInput
                             className="mb-4"
                             label="Cardholder's Name"
+                            name="cardholderName"
                             type="text"
                             size="lg"
                             placeholder="Cardholder's Name"
@@ -154,6 +155,7 @@ export default function Cart({ isLoggedIn }) {
                           <MDBInput
                             className="mb-4"
                             label="Card Number"
+                            name="cardNumber"
                             type="text"
                             size="lg"
                             minLength="19"
@@ -168,6 +170,7 @@ export default function Cart({ isLoggedIn }) {
                               <MDBInput
                                 className="mb-4"
                                 label="Expiration"
+                                name="expiration"
                                 type="text"
                                 size="lg"
                                 minLength="7"
@@ -181,6 +184,7 @@ export default function Cart({ isLoggedIn }) {
                               <MDBInput
                                 className="mb-4"
                                 label="Cvv"
+                                name="cvv"
                                 type="text"
                                 size="lg"
                                 minLength="3"
@@ -197,7 +201,7 @@ export default function Cart({ isLoggedIn }) {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">${cartTotal}</p>
+                          <p className="mb-2">${totalPrice}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
